@@ -1,0 +1,30 @@
+# Area Calculation Program
+
+cat("1. Rectangle\n")
+cat("2. Square\n")
+cat("3. Circle\n")
+cat("4. Triangle\n")
+
+choice <- as.integer(readline("Enter your choice: "))
+
+if (choice == 1) {
+l <- as.numeric(readline("Enter length: "))
+b <- as.numeric(readline("Enter breadth: "))
+cat("Area of Rectangle =", l * b)
+
+} else if (choice == 2) {
+s <- as.numeric(readline("Enter side: "))
+cat("Area of Square =", s * s)
+
+} else if (choice == 3) {
+r <- as.numeric(readline("Enter radius: "))
+cat("Area of Circle =", pi * r^2)
+
+} else if (choice == 4) {
+b <- as.numeric(readline("Enter base: "))
+h <- as.numeric(readline("Enter height: "))
+cat("Area of Triangle =", 0.5 * b * h)
+
+} else {
+cat("Invalid choice")
+}

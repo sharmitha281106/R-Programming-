@@ -1,0 +1,28 @@
+# Program 10: Comprehensive Statistical Analysis
+# Sample dataset
+marks <- c(78, 85, 92, 88, 76, 95, 82, 79, 91, 84, 87, 80, 93, 77, 89)
+
+cat("Dataset (Marks):", marks, "\n\n")
+
+# Basic Statistics
+cat("--- Descriptive Statistics ---\n")
+cat("Mean:", round(mean(marks), 2), "\n")
+cat("Median:", median(marks), "\n")
+cat("Mode (most frequent):", as.numeric(names(sort(table(marks), decreasing=TRUE)[1])), "\n")
+cat("Range:", max(marks) - min(marks), "\n")
+cat("Variance:", round(var(marks), 2), "\n")
+cat("Standard Deviation:", round(sd(marks), 2), "\n")
+
+# Quartiles
+cat("\n--- Quartiles ---\n")
+cat("Q1 (25%):", quantile(marks, 0.25), "\n")
+cat("Q2 (50%):", quantile(marks, 0.50), "\n")
+cat("Q3 (75%):", quantile(marks, 0.75), "\n")
+
+# Summary
+cat("\n--- Full Summary ---\n")
+print(summary(marks))
+
+# Correlation example
+age <- c(20, 21, 22, 20, 23, 21, 22, 20, 23, 21, 22, 20, 23, 21, 22)
+cat("\nCorrelation between Age and Marks:", round(cor(age, marks), 3), "\n")

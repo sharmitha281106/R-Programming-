@@ -1,0 +1,68 @@
+# Program (a): Rename a factor level for market survey data
+# Scenario: Customers' preferred payment mode needs clearer labeling
+
+# Create sample survey data with payment modes
+payment_modes <- factor(c(
+"CC", "DC", "CC", "UPI", "DC", "CC",
+"UPI", "COD", "DC", "UPI", "CC", "COD"
+))
+
+cat("=== Original Payment Mode Factor ===\n")
+cat("Data:", payment_modes, "\n")
+cat("Levels:", levels(payment_modes), "\n\n")
+
+# Method 1: Rename specific level using levels() assignment
+cat("--- Method 1: Rename 'CC' to 'Credit Card' ---\n")
+levels(payment_modes)[levels(payment_modes) == "CC"] <- "Credit Card"
+print(payment_modes)
+cat("Updated Levels:", levels(payment_modes), "\n\n")
+
+# Method 2: Rename multiple levels at once using list
+payment_modes2 <- factor(c("CC", "DC", "UPI", "COD", "CC", "DC"))
+
+cat("--- Method 2: Rename all levels with descriptive names ---\n")
+levels(payment_modes2) <- list(
+"Credit Card" = "CC",
+"Debit Card" = "DC",
+"UPI Payment" = "UPI",
+"Cash on Delivery" = "COD"
+)
+print(payment_modes2)
+cat("Updated Levels:", levels(payment_modes2), "\n\n")
+
+# Method 3: Using forcats package (if installed)
+# install.packages("forcats") # Uncomment if needed
+if(requireNamespace("forcats", quietly = TRUE)) {
+library(forcats)
+payment_modes3 <- factor(c("CC", "DC", "UPI"))
+
+cat("--- Method 3: Using fct_recode() from forcats ---\n")
+payment_modes3 <- fct_recode(
+payment_modes3,
+"Credit Card" = "CC",
+"Debit Card" = "DC",
+"UPI Payment" = "UPI"
+)
+print(payment_modes3)
+cat("Levels:", levels(payment_modes3), "\n")
+}
+
+# Create a complete survey data frame
+survey_data <- data.frame(
+CustomerID = 1:12,
+PaymentMode = factor(c("CC", "DC", "CC", "UPI", "DC", "CC",
+"UPI", "COD", "DC", "UPI", "CC", "COD"))
+)
+
+cat("\n=== Complete Survey Data Frame ===\n")
+print(survey_data)
+
+# Rename levels in the data frame
+levels(survey_data$PaymentMode) <- c(
+"Cash on Delivery", "Credit Card", "Debit Card", "UPI Payment"
+)
+
+cat("\n=== After Renaming Levels ===\n")
+print(survey_data)
+cat("\nFrequency Table:\n")
+print(table(survey_data$PaymentMode))

@@ -1,0 +1,42 @@
+# Program 12: Count even and odd numbers in a vector
+count_even_odd <- function(numbers) {
+even_count <- 0
+odd_count <- 0
+even_nums <- c()
+odd_nums <- c()
+
+for(num in numbers) {
+if(num %% 2 == 0) {
+even_count <- even_count + 1
+even_nums <- c(even_nums, num)
+} else {
+odd_count <- odd_count + 1
+odd_nums <- c(odd_nums, num)
+}
+}
+
+return(list(
+even_count = even_count,
+odd_count = odd_count,
+even_numbers = even_nums,
+odd_numbers = odd_nums
+))
+}
+
+# Test with sample data
+numbers <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15)
+cat("Input vector:", numbers, "\n\n")
+
+result <- count_even_odd(numbers)
+
+cat("--- Results ---\n")
+cat("Total numbers:", length(numbers), "\n")
+cat("Even count:", result$even_count, "\n")
+cat("Odd count:", result$odd_count, "\n")
+cat("Even numbers:", result$even_numbers, "\n")
+cat("Odd numbers:", result$odd_numbers, "\n")
+
+# Using built-in functions (alternative)
+cat("\n--- Using sum() ---\n")
+cat("Even count:", sum(numbers %% 2 == 0), "\n")
+cat("Odd count:", sum(numbers %% 2 != 0), "\n")

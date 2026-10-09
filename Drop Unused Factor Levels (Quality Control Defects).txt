@@ -1,0 +1,84 @@
+# Program (b): Drop unused factor levels after data cleaning
+# Scenario: Quality control unit has defect types, some levels no longer exist
+
+# Create sample defect data with all possible defect types
+defect_types <- factor(
+c("Scratch", "Dent", "Scratch", "Crack", "Dent",
+"Scratch", "Discoloration", "Dent", "Crack"),
+levels = c("Scratch", "Dent", "Crack", "Discoloration", "Misalignment", "Corrosion")
+)
+
+cat("=== Original Defect Types Factor ===\n")
+cat("Data:", defect_types, "\n")
+cat("All Levels (including unused):", levels(defect_types), "\n")
+cat("Number of levels:", nlevels(defect_types), "\n\n")
+
+# Show which levels are actually used
+cat("--- Level Usage Before Cleaning ---\n")
+print(table(defect_types))
+cat("\n")
+
+# Simulate data cleaning: filter to only include certain defects
+# (e.g., removing minor defects from analysis)
+cat("=== After Data Cleaning (filtering out minor defects) ===\n")
+cleaned_defects <- defect_types[defect_types %in% c("Scratch", "Dent", "Crack")]
+
+cat("Cleaned Data:", cleaned_defects, "\n")
+cat("Levels (still includes unused):", levels(cleaned_defects), "\n")
+cat("Number of levels:", nlevels(cleaned_defects), "\n\n")
+
+# Method 1: Drop unused levels using droplevels()
+cat("--- Method 1: Using droplevels() ---\n")
+cleaned_defects_dropped <- droplevels(cleaned_defects)
+
+cat("After droplevels():\n")
+cat("Data:", cleaned_defects_dropped, "\n")
+cat("Levels (unused removed):", levels(cleaned_defects_dropped), "\n")
+cat("Number of levels:", nlevels(cleaned_defects_dropped), "\n\n")
+
+# Method 2: Drop unused levels by recreating factor
+cat("--- Method 2: Recreate factor (alternative method) ---\n")
+cleaned_defects_refactor <- factor(cleaned_defects)
+
+cat("After factor():\n")
+cat("Data:", cleaned_defects_refactor, "\n")
+cat("Levels:", levels(cleaned_defects_refactor), "\n")
+cat("Number of levels:", nlevels(cleaned_defacts_refactor), "\n\n")
+
+# Method 3: Drop specific levels only
+cat("--- Method 3: Drop specific unused levels ---\n")
+# Keep only levels that are actually present
+current_levels <- levels(cleaned_defects)
+used_levels <- unique(as.character(cleaned_defects))
+levels_to_keep <- current_levels[current_levels %in% used_levels]
+
+cleaned_defects_specific <- factor(cleaned_defects, levels = levels_to_keep)
+cat("Kept levels:", levels(cleaned_defects_specific), "\n\n")
+
+# Complete example with data frame
+quality_data <- data.frame(
+ProductID = 1:9,
+DefectType = defect_types,
+Severity = c("Low", "Medium", "High", "Medium", "Low",
+"High", "Low", "Medium", "High")
+)
+
+cat("=== Quality Control Data Frame ===\n")
+print(quality_data)
+
+# Filter data (simulate removing products with certain defects)
+cat("\n--- After Filtering (only Scratch and Dent) ---\n")
+filtered_data <- quality_data[quality_data$DefectType %in% c("Scratch", "Dent"), ]
+
+cat("Before droplevels():\n")
+cat("DefectType levels:", levels(filtered_data$DefectType), "\n")
+
+# Drop unused levels from entire data frame
+filtered_data_clean <- droplevels(filtered_data)
+
+cat("\nAfter droplevels():\n")
+cat("DefectType levels:", levels(filtered_data_clean$DefectType), "\n")
+print(filtered_data_clean)
+
+cat("\n--- Frequency Table (Clean) ---\n")
+print(table(filtered_data_clean$DefectType))

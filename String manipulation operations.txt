@@ -1,0 +1,30 @@
+# Program 6: String manipulation operations
+str1 <- "Hello"
+str2 <- "World"
+str3 <- " R Programming "
+
+# Concatenation
+cat("Concatenation:", paste(str1, str2), "\n")
+cat("Without space:", paste0(str1, str2), "\n")
+
+# Length
+cat("\nLength of str1:", nchar(str1), "\n")
+
+# Case conversion
+cat("Uppercase:", toupper(str1), "\n")
+cat("Lowercase:", tolower(str2), "\n")
+
+# Substring
+cat("Substring (1-3):", substr(str1, 1, 3), "\n")
+
+# Trim whitespace
+cat("Trimmed:", trimws(str3), "\n")
+
+# Replace
+str4 <- "I love Python"
+cat("Original:", str4, "\n")
+cat("Replaced:", sub("Python", "R", str4), "\n")
+
+# Split string
+words <- strsplit("R,is,awesome", ",")[[1]]
+cat("Split:", words, "\n")

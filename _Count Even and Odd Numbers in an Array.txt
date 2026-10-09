@@ -1,0 +1,28 @@
+# Count even and odd numbers
+
+n <- as.integer(readline("Enter number of elements: "))
+
+numbers <- numeric(n)
+
+for (i in 1:n) {
+numbers[i] <- as.numeric(
+readline(paste("Enter number", i, ": "))
+)
+}
+
+even <- 0
+odd <- 0
+
+for (i in numbers) {
+if (i %% 2 == 0) {
+even <- even + 1
+} else {
+odd <- odd + 1
+}
+}
+
+cat("Numbers entered:\n")
+print(numbers)
+
+cat("Even numbers =", even, "\n")
+cat("Odd numbers =", odd, "\n")

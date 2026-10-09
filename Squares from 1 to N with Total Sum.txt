@@ -1,0 +1,43 @@
+# Function to print squares of numbers from 1 to N and their total sum
+print_squares_with_sum <- function(N) {
+# Validate input
+if(N <= 0 || !is.numeric(N)) {
+stop("Please enter a positive numeric value for N")
+}
+
+# Create sequence from 1 to N
+numbers <- 1:N
+
+# Calculate squares
+squares <- numbers^2
+
+# Calculate total sum of squares
+total_sum <- sum(squares)
+
+# Display results
+cat("=== Squares from 1 to", N, "===\n\n")
+cat(sprintf("%-10s %-10s\n", "Number", "Square"))
+cat("------------------------\n")
+
+for(i in 1:length(numbers)) {
+cat(sprintf("%-10d %-10d\n", numbers[i], squares[i]))
+}
+
+cat("------------------------\n")
+cat("Total Sum of Squares:", total_sum, "\n")
+
+# Return values for further use
+return(list(
+numbers = numbers,
+squares = squares,
+total_sum = total_sum
+))
+}
+
+# Example usage for analytics dashboard
+N <- 10
+result <- print_squares_with_sum(N)
+
+# Access individual components if needed
+cat("\nSquares vector:", result$squares, "\n")
+cat("Sum verified:", sum(result$squares), "\n")

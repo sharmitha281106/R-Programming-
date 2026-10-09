@@ -1,0 +1,20 @@
+# Temperature Conversion Program
+
+cat("1. Fahrenheit to Celsius\n")
+cat("2. Celsius to Fahrenheit\n")
+
+choice <- as.integer(readline("Enter your choice: "))
+temp <- as.numeric(readline("Enter temperature: "))
+
+if (choice == 1) {
+celsius <- (temp - 32) * 5 / 9
+cat("Temperature in Celsius =", celsius, "\n")
+} else if (choice == 2) {
+fahrenheit <- (temp * 9 / 5) + 32
+cat("Temperature in Fahrenheit =", fahrenheit, "\n")
+} else {
+cat("Invalid choice!\n")
+}
+
+# Formula 1: C = (F - 32) * 5/9
+# Formula 2: F = (C * 9/5) + 32

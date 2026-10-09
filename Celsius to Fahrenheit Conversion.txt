@@ -1,0 +1,62 @@
+# User-defined function to convert Celsius to Fahrenheit
+celsius_to_fahrenheit <- function(celsius) {
+# Validate input
+if(!is.numeric(celsius)) {
+stop("Temperature must be a numeric value")
+}
+
+# Check for absolute zero (physical limit)
+if(celsius < -273.15) {
+warning("Temperature below absolute zero (-273.15°C) is not physically possible")
+}
+
+# Conversion formula: F = (C × 9/5) + 32
+fahrenheit <- (celsius * 9/5) + 32
+
+# Return the result
+return(fahrenheit)
+}
+
+# Interactive version that takes user input
+convert_celsius_interactive <- function() {
+cat("=== Celsius to Fahrenheit Converter ===\n")
+celsius_input <- as.numeric(readline("Enter temperature in Celsius: "))
+
+if(is.na(celsius_input)) {
+cat("Error: Invalid input. Please enter a numeric value.\n")
+return(NULL)
+}
+
+fahrenheit_result <- celsius_to_fahrenheit(celsius_input)
+
+cat("\nResult:\n")
+cat(sprintf("%.2f°C = %.2f°F\n", celsius_input, fahrenheit_result))
+
+return(fahrenheit_result)
+}
+
+# Batch conversion for multiple values
+batch_convert <- function(celsius_values) {
+fahrenheit_values <- sapply(celsius_values, celsius_to_fahrenheit)
+
+result_df <- data.frame(
+Celsius = celsius_values,
+Fahrenheit = round(fahrenheit_values, 2)
+)
+
+return(result_df)
+}
+
+# Example usage
+cat("--- Single Conversion ---\n")
+temp_c <- 25
+temp_f <- celsius_to_fahrenheit(temp_c)
+cat(temp_c, "°C =", temp_f, "°F\n\n")
+
+cat("--- Common Reference Points ---\n")
+reference_temps <- c(0, 10, 20, 25, 30, 37, 100)
+conversion_table <- batch_convert(reference_temps)
+print(conversion_table)
+
+cat("\n--- Interactive Mode (uncomment to use) ---\n")
+# convert_celsius_interactive()

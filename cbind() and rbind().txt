@@ -1,0 +1,27 @@
+# Program 5: Demonstrate cbind() and rbind()
+# Create sample vectors
+v1 <- c(1, 2, 3)
+v2 <- c(4, 5, 6)
+v3 <- c(7, 8, 9)
+
+# Using cbind() - column bind
+cat("Using cbind() (column-wise):\n")
+mat_col <- cbind(v1, v2, v3)
+print(mat_col)
+
+# Using rbind() - row bind
+cat("\nUsing rbind() (row-wise):\n")
+mat_row <- rbind(v1, v2, v3)
+print(mat_row)
+
+# With data frames
+df1 <- data.frame(Name=c("A", "B"), Age=c(20, 21))
+df2 <- data.frame(Name=c("C", "D"), Age=c(22, 23))
+
+cat("\nData Frame cbind (add column):\n")
+df_col <- cbind(df1, Score=c(85, 90))
+print(df_col)
+
+cat("\nData Frame rbind (add rows):\n")
+df_row <- rbind(df1, df2)
+print(df_row)

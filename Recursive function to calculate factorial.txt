@@ -1,0 +1,35 @@
+# Program 11: Recursive function to calculate factorial
+factorial_recursive <- function(n) {
+# Base case
+if(n == 0 || n == 1) {
+return(1)
+}
+# Recursive case
+else {
+return(n * factorial_recursive(n - 1))
+}
+}
+
+# Iterative factorial for comparison
+factorial_iterative <- function(n) {
+result <- 1
+for(i in 1:n) {
+result <- result * i
+}
+return(result)
+}
+
+# Test
+cat("Recursive Factorial:\n")
+for(i in 0:10) {
+cat(i, "! =", factorial_recursive(i), "\n")
+}
+
+cat("\nIterative Factorial (verification):\n")
+for(i in 0:5) {
+cat(i, "! =", factorial_iterative(i), "\n")
+}
+
+# Large number test
+n <- 12
+cat("\nFactorial of", n, "=", factorial_recursive(n), "\n")

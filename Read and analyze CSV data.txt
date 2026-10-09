@@ -1,0 +1,30 @@
+# Program 8: Read and analyze CSV data
+# Create sample CSV file
+sample_data <- data.frame(
+Name = c("Arun", "Priya", "Karthik", "Meera", "Rahul"),
+Age = c(22, 21, 23, 20, 22),
+Marks = c(78, 85, 92, 88, 76),
+City = c("Chennai", "Coimbatore", "Madurai", "Salem", "Trichy")
+)
+
+write.csv(sample_data, "students.csv", row.names=FALSE)
+cat("CSV file created: students.csv\n\n")
+
+# Read CSV
+data <- read.csv("students.csv")
+cat("Data from CSV:\n")
+print(data)
+
+# Analysis
+cat("\n--- Statistical Analysis ---\n")
+cat("Total students:", nrow(data), "\n")
+cat("Average Marks:", round(mean(data$Marks), 2), "\n")
+cat("Highest Marks:", max(data$Marks), "\n")
+cat("Lowest Marks:", min(data$Marks), "\n")
+cat("Average Age:", mean(data$Age), "\n")
+
+cat("\n--- Summary ---\n")
+print(summary(data))
+
+cat("\nStudents with Marks > 80:\n")
+print(data[data$Marks > 80, ])

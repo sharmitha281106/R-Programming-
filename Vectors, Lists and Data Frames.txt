@@ -1,0 +1,36 @@
+# Program 7: Vectors, Lists and Data Frames
+# Vectors
+vec_num <- c(10, 20, 30, 40, 50)
+vec_char <- c("A", "B", "C", "D")
+
+cat("Numeric Vector:", vec_num, "\n")
+cat("Character Vector:", vec_char, "\n")
+cat("Vector sum:", sum(vec_num), "\n")
+cat("Vector mean:", mean(vec_num), "\n\n")
+
+# Lists
+my_list <- list(
+numbers = c(1, 2, 3),
+name = "Student",
+matrix = matrix(1:4, nrow=2),
+nested = list(a=10, b=20)
+)
+
+cat("List contents:\n")
+print(my_list)
+cat("\nAccess list element:", my_list$name, "\n")
+
+# Data Frames
+df <- data.frame(
+ID = c(1, 2, 3, 4),
+Name = c("Alice", "Bob", "Charlie", "Diana"),
+Marks = c(85, 90, 78, 92),
+Grade = c("B", "A", "C", "A")
+)
+
+cat("\nData Frame:\n")
+print(df)
+cat("\nStructure:\n")
+str(df)
+cat("\nSummary:\n")
+summary(df)

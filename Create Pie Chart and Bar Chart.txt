@@ -1,0 +1,32 @@
+# Program 9: Create Pie Chart and Bar Chart
+# Sample data
+categories <- c("A", "B", "C", "D", "E")
+values <- c(25, 40, 15, 30, 20)
+colors <- c("red", "blue", "green", "orange", "purple")
+
+# Pie Chart
+png("pie_chart.png", width=400, height=400)
+pie(values,
+labels = categories,
+main = "Pie Chart - Category Distribution",
+col = colors,
+clockwise = TRUE)
+dev.off()
+cat("Pie chart saved as pie_chart.png\n")
+
+# Bar Chart
+png("bar_chart.png", width=400, height=400)
+barplot(values,
+names.arg = categories,
+main = "Bar Chart - Category Values",
+xlab = "Categories",
+ylab = "Values",
+col = colors,
+border = "black")
+dev.off()
+cat("Bar chart saved as bar_chart.png\n")
+
+# Display values
+cat("\nData used:\n")
+df_chart <- data.frame(Category=categories, Value=values)
+print(df_chart)
